@@ -130,6 +130,11 @@ impl<'repo> SnapshotMut<'repo> {
         self.repo.take();
         std::mem::take(&mut self.config)
     }
+
+    /// Returns the underlying configuration implementation as a mutable reference for a complete API, despite being a little less convenient.
+    pub fn plumbing_mut(&mut self) -> &mut git_config::File<'static> {
+        &mut self.config
+    }
 }
 
 /// Utilities
